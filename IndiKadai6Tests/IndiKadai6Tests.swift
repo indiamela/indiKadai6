@@ -2,32 +2,31 @@
 //  IndiKadai6Tests.swift
 //  IndiKadai6Tests
 //
-//  Created by Taishi Kusunose on 2021/12/10.
 //
 
 import XCTest
 @testable import IndiKadai6
 
 class IndiKadai6Tests: XCTestCase {
+    let actions = Actions()
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func test_createdRandomInt_lessThan100() throws {
+        let result = actions.createRandomInt()
+        XCTAssertTrue((1...100).contains(result))
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func test_judgeAnswere_incorrect() throws {
+        let result = actions.judgeAnswere(subject: 10, answere: 50)
+        XCTAssertEqual(result, "はずれ！あなたの値：50")
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_judgeAnswere_correct() throws {
+        let result = actions.judgeAnswere(subject: 10, answere: 10)
+        XCTAssertEqual(result, "あたり！あなたの値：10")
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func test_judgeAnswere_error() throws {
+        let result = actions.judgeAnswere(subject: 10, answere: 102)
+        XCTAssertEqual(result, "エラーが発生しました")
     }
-
 }

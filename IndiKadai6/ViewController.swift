@@ -2,7 +2,6 @@
 //  ViewController.swift
 //  IndiKadai6
 //
-//  Created by Taishi Kusunose on 2021/12/10.
 //
 
 import UIKit
@@ -11,25 +10,18 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var randomTextLabel: UILabel!
     @IBOutlet private weak var answereSlider: UISlider!
-    private var randomInt: Int = 0
+    private var randomInt: Int = 50
+    let actions = Actions()
     override func viewDidLoad() {
         super.viewDidLoad()
         reset()
     }
+
     @IBAction private func judgementButton(_ sender: Any) {
-        let answere = Int(answereSlider.value)
-        guard (1...100).contains(answere) else {
-            showAlert(message: "エラーが発生しました")
-            return
-        }
-        if answere == randomInt {
-            showAlert(message: "あたり！あなたの値：\(answere)")
-        } else {
-            showAlert(message: "はずれ！あなたの値：\(answere)")
-        }
+        showAlert(message: actions.judgeAnswere(subject: randomInt, answere: Int(answereSlider.value)))
     }
     private func reset() {
-        randomInt = Int(arc4random_uniform(100) + 1)
+        randomInt = actions.createRandomInt()
         randomTextLabel.text = String(randomInt)
         answereSlider.value = 50
     }
@@ -39,5 +31,23 @@ class ViewController: UIViewController {
             self.reset()
         })
         self.present(alert, animated: true)
+    }
+}
+
+internal struct Actions {
+    func createRandomInt() -> Int {
+        return Int(arc4random_uniform(100) + 1)
+    }
+
+    func judgeAnswere(subject: Int, answere: Int) -> String {
+        guard (1...100).contains(subject),
+              (1...100).contains(answere) else {
+            return "エラーが発生しました"
+        }
+        if answere == subject {
+            return "あたり！あなたの値：\(answere)"
+        } else {
+            return "はずれ！あなたの値：\(answere)"
+        }
     }
 }

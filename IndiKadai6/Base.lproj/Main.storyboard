@@ -39,16 +39,14 @@
                                             <action selector="judgementButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2To-89-ovh"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnd-Bo-syV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnd-Bo-syV">
                                         <rect key="frame" x="365" y="147" width="29" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NI-MD-Qqa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NI-MD-Qqa">
                                         <rect key="frame" x="20" y="147" width="8" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -57,15 +55,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="LJk-xa-nyn" firstAttribute="centerX" secondItem="DI9-cx-PN5" secondAttribute="centerX" id="AAA-VF-0tg"/>
+                                    <constraint firstItem="Lnd-Bo-syV" firstAttribute="top" secondItem="DI9-cx-PN5" secondAttribute="top" constant="147" id="Ewp-LQ-KWJ"/>
                                     <constraint firstAttribute="height" constant="259" id="H6z-lZ-rFD"/>
                                     <constraint firstItem="LJk-xa-nyn" firstAttribute="leading" secondItem="4pa-Vc-HvV" secondAttribute="leading" id="K5N-cm-TRZ"/>
                                     <constraint firstItem="LJk-xa-nyn" firstAttribute="top" secondItem="DI9-cx-PN5" secondAttribute="top" constant="20" id="MPo-GS-pPn"/>
                                     <constraint firstItem="HiF-JK-gjV" firstAttribute="top" secondItem="LJk-xa-nyn" secondAttribute="bottom" constant="54" id="NvU-Qq-j6l"/>
+                                    <constraint firstItem="Lnd-Bo-syV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3NI-MD-Qqa" secondAttribute="trailing" constant="8" symbolic="YES" id="ZKD-Vc-WLX"/>
                                     <constraint firstItem="LJk-xa-nyn" firstAttribute="leading" secondItem="HiF-JK-gjV" secondAttribute="leading" id="b6Y-rr-8cm"/>
+                                    <constraint firstItem="3NI-MD-Qqa" firstAttribute="top" secondItem="DI9-cx-PN5" secondAttribute="top" constant="147" id="bDm-jA-aHH"/>
                                     <constraint firstItem="LJk-xa-nyn" firstAttribute="trailing" secondItem="HiF-JK-gjV" secondAttribute="trailing" id="c9d-sX-KXa"/>
                                     <constraint firstAttribute="bottom" secondItem="4pa-Vc-HvV" secondAttribute="bottom" constant="20" id="fy4-17-8ZX"/>
                                     <constraint firstItem="LJk-xa-nyn" firstAttribute="trailing" secondItem="4pa-Vc-HvV" secondAttribute="trailing" id="iKa-Cd-Of7"/>
                                     <constraint firstItem="LJk-xa-nyn" firstAttribute="leading" secondItem="DI9-cx-PN5" secondAttribute="leading" constant="20" id="o5t-f4-Xw8"/>
+                                    <constraint firstItem="3NI-MD-Qqa" firstAttribute="leading" secondItem="DI9-cx-PN5" secondAttribute="leading" constant="20" symbolic="YES" id="q2Y-cd-Y2n"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lnd-Bo-syV" secondAttribute="trailing" constant="20" symbolic="YES" id="rfN-69-BM3"/>
                                     <constraint firstItem="4pa-Vc-HvV" firstAttribute="top" secondItem="HiF-JK-gjV" secondAttribute="bottom" constant="69" id="sF7-Ch-qby"/>
                                 </constraints>
                             </view>
