@@ -10,19 +10,27 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var randomTextLabel: UILabel!
     @IBOutlet private weak var answereSlider: UISlider!
-    private var randomInt: Int = 50
-    let actions = Actions()
+    private var correctAnswer: Int = 50
+    private let gameRule = GameRule()
     override func viewDidLoad() {
         super.viewDidLoad()
         reset()
     }
 
     @IBAction private func judgementButton(_ sender: Any) {
-        showAlert(message: actions.judgeAnswere(subject: randomInt, answere: Int(answereSlider.value)))
+        do {
+            let answer = Int(answereSlider.value)
+            let isCorrect = try gameRule.judgeAnswer(subject: correctAnswer, answer: answer)
+            showAlert(message: "\(isCorrect ? "あたり！" : "はずれ！")あなたの値：\(answer)")
+        } catch GameRule.Error.outOfRange {
+            showAlert(message: "エラーが発生しました")
+        } catch {
+            showAlert(message: "エラーが発生しました")
+        }
     }
     private func reset() {
-        randomInt = actions.createRandomInt()
-        randomTextLabel.text = String(randomInt)
+        correctAnswer = gameRule.createRandomValue()
+        randomTextLabel.text = String(correctAnswer)
         answereSlider.value = 50
     }
     private func showAlert(message: String) {
@@ -34,20 +42,23 @@ class ViewController: UIViewController {
     }
 }
 
-internal struct Actions {
-    func createRandomInt() -> Int {
-        return Int(arc4random_uniform(100) + 1)
+internal struct GameRule {
+    enum Error: Swift.Error {
+        case outOfRange
     }
 
-    func judgeAnswere(subject: Int, answere: Int) -> String {
-        guard (1...100).contains(subject),
-              (1...100).contains(answere) else {
-            return "エラーが発生しました"
+    private let valueRange = 1...100
+
+    func createRandomValue() -> Int {
+        Int.random(in: valueRange)
+    }
+
+    func judgeAnswer(subject: Int, answer: Int) throws -> Bool {
+        guard valueRange.contains(subject),
+              valueRange.contains(answer) else {
+                  throw Error.outOfRange
         }
-        if answere == subject {
-            return "あたり！あなたの値：\(answere)"
-        } else {
-            return "はずれ！あなたの値：\(answere)"
-        }
+
+        return answer == subject
     }
 }
