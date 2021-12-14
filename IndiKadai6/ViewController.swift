@@ -10,7 +10,7 @@ class ViewController: UIViewController {
 
     @IBOutlet private weak var randomTextLabel: UILabel!
     @IBOutlet private weak var answereSlider: UISlider!
-    private var randomInt: Int = 50
+    private var correctAnswere: Int = 50
     let actions = Actions()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +18,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction private func judgementButton(_ sender: Any) {
-        showAlert(message: actions.judgeAnswere(subject: randomInt, answere: Int(answereSlider.value)))
+        showAlert(message: actions.judgeAnswere(subject: correctAnswere, answere: Int(answereSlider.value)))
     }
     private func reset() {
-        randomInt = actions.createRandomInt()
-        randomTextLabel.text = String(randomInt)
+        correctAnswere = actions.createRandomInt()
+        randomTextLabel.text = String(correctAnswere)
         answereSlider.value = 50
     }
     private func showAlert(message: String) {
