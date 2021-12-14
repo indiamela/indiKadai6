@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         }
     }
     private func reset() {
-        correctAnswere = gameRule.createRandomInt()
+        correctAnswere = gameRule.createRandomValue()
         randomTextLabel.text = String(correctAnswere)
         answereSlider.value = 50
     }
@@ -49,8 +49,8 @@ internal struct GameRule {
 
     private let valueRange = 1...100
 
-    func createRandomInt() -> Int {
-        return Int(arc4random_uniform(100) + 1)
+    func createRandomValue() -> Int {
+        Int.random(in: valueRange)
     }
 
     func judgeAnswere(subject: Int, answere: Int) throws -> Bool {
