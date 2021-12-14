@@ -11,17 +11,17 @@ class ViewController: UIViewController {
     @IBOutlet private weak var randomTextLabel: UILabel!
     @IBOutlet private weak var answereSlider: UISlider!
     private var correctAnswere: Int = 50
-    let actions = Actions()
+    private let gameRule = GameRule()
     override func viewDidLoad() {
         super.viewDidLoad()
         reset()
     }
 
     @IBAction private func judgementButton(_ sender: Any) {
-        showAlert(message: actions.judgeAnswere(subject: correctAnswere, answere: Int(answereSlider.value)))
+        showAlert(message: gameRule.judgeAnswere(subject: correctAnswere, answere: Int(answereSlider.value)))
     }
     private func reset() {
-        correctAnswere = actions.createRandomInt()
+        correctAnswere = gameRule.createRandomInt()
         randomTextLabel.text = String(correctAnswere)
         answereSlider.value = 50
     }
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
 }
 
-internal struct Actions {
+internal struct GameRule {
     func createRandomInt() -> Int {
         return Int(arc4random_uniform(100) + 1)
     }

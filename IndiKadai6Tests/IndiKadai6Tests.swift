@@ -8,7 +8,7 @@ import XCTest
 @testable import IndiKadai6
 
 class IndiKadai6Tests: XCTestCase {
-    let actions = Actions()
+    let actions = GameRule()
 
     func test_createdRandomInt_lessThan100() throws {
         let result = actions.createRandomInt()
