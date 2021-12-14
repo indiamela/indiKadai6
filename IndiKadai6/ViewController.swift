@@ -18,7 +18,15 @@ class ViewController: UIViewController {
     }
 
     @IBAction private func judgementButton(_ sender: Any) {
-        showAlert(message: gameRule.judgeAnswere(subject: correctAnswere, answere: Int(answereSlider.value)))
+        do {
+            let answere = Int(answereSlider.value)
+            let isCorrect = try gameRule.judgeAnswere(subject: correctAnswere, answere: answere)
+            showAlert(message: "\(isCorrect ? "あたり！" : "はずれ！")あなたの値：\(answere)")
+        } catch GameRule.Error.outOfRange {
+            showAlert(message: "エラーが発生しました")
+        } catch {
+            showAlert(message: "エラーが発生しました")
+        }
     }
     private func reset() {
         correctAnswere = gameRule.createRandomInt()
@@ -35,19 +43,21 @@ class ViewController: UIViewController {
 }
 
 internal struct GameRule {
+    enum Error: Swift.Error {
+        case outOfRange
+    }
+
+    private let valueRange = 1...100
+
     func createRandomInt() -> Int {
         return Int(arc4random_uniform(100) + 1)
     }
 
-    func judgeAnswere(subject: Int, answere: Int) -> String {
-        guard (1...100).contains(subject),
-              (1...100).contains(answere) else {
-            return "エラーが発生しました"
+    func judgeAnswere(subject: Int, answere: Int) throws -> Bool {
+        guard valueRange.contains(subject),
+              valueRange.contains(answere) else {
+                  throw Error.outOfRange
         }
-        if answere == subject {
-            return "あたり！あなたの値：\(answere)"
-        } else {
-            return "はずれ！あなたの値：\(answere)"
-        }
+        return answere == subject
     }
 }
